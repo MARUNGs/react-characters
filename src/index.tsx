@@ -1,5 +1,4 @@
 import ReactDOM from "react-dom/client";
-import App from "./App";
 import router from "./Router";
 import { RouterProvider } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
@@ -14,11 +13,9 @@ const queryClient = new QueryClient();
 
 root.render(
   <>
-    <RouterProvider router={router} />
-
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
-        <App />
+        <RouterProvider router={router} />
       </ThemeProvider>
     </QueryClientProvider>
   </>
