@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import magicImg from "../images/magic_img_1.png";
 
+// styled-components components
 export const Container = styled.div`
   position: relative;
   width: 100%;
@@ -12,9 +13,8 @@ export const Container = styled.div`
 export const Title = styled.h1`
   position: relative;
   z-index: 3;
-
   text-align: center;
-  font-size: 2.5rem;
+  /* font-size: 2.5rem; */
 `;
 
 export const BackgroundTitleImage = styled.div`
@@ -31,4 +31,5 @@ export const BackgroundTitleImage = styled.div`
   pointer-events: none;
 `;
 
-export const h1ClassNm = `text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-900 via-teal-400 to-blue-900 animate-gradient cursor-pointer hover:opacity-80 transition-opacity drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`;
+// tailwind.css string
+export const h1ClassNm = `text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-900 via-teal-400 to-blue-900 animate-gradient cursor-pointer hover:opacity-80 transition-opacity drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`;
