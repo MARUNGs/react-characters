@@ -35,15 +35,30 @@ const ButtonA = styled.a.attrs({
     "inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
 })``;
 
+const FilmBtn = styled.button.attrs({
+  className: `text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700`,
+})``;
+
 // interface
 interface CardProps {
   id: number;
-  name: string;
-  imageUrl: string;
+  name: string | undefined;
+  imageUrl: string | undefined;
+  films: string[] | undefined;
+  sourceUrl: string | undefined;
+  mainYn: boolean;
 }
 
 // Main
-const Card: React.FC<CardProps> = ({ id, name, imageUrl }) => {
+const Card: React.FC<CardProps> = ({
+  id,
+  name,
+  imageUrl,
+  films,
+  sourceUrl,
+  mainYn,
+}) => {
+  const onClick = () => sourceUrl && (window.location.href = sourceUrl);
   return (
     <>
       <Container>
@@ -52,10 +67,17 @@ const Card: React.FC<CardProps> = ({ id, name, imageUrl }) => {
         <FlexItem>
           <Img src={`${imageUrl}`} alt="Bonnie image" />
           <Title>{name}</Title>
+
+          {films && films.map((film, i) => <FilmBtn key={i}>{film}</FilmBtn>)}
+
           <FlexMargin>
-            <Link to={`character/${id}`}>
-              <ButtonA>More</ButtonA>
-            </Link>
+            {mainYn ? (
+              <Link to={`character/${id}`} state={{ id }}>
+                <ButtonA onClick={onClick}>More</ButtonA>
+              </Link>
+            ) : (
+              <ButtonA onClick={onClick}>More</ButtonA>
+            )}
           </FlexMargin>
         </FlexItem>
       </Container>

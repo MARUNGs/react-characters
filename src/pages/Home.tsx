@@ -1,5 +1,5 @@
 // import
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InButton from "../components/InButton";
 import { useQuery } from "@tanstack/react-query";
 import { queryCharacters } from "../api/data";
@@ -9,6 +9,7 @@ import {
   CardListContainer,
 } from "../styles/HomeStyled";
 import Card from "../components/Card";
+import { useLocation } from "react-router-dom";
 
 // interface
 interface ICharacter {
@@ -28,6 +29,7 @@ export default function Home() {
 
   // variable
   const [visible, setVisible] = useState(true);
+  const flag = useLocation();
   const [mainContainerShow, setMainContainerShow] = useState(false);
   const [inButtonContainerHide, setInButtonContainerHide] = useState(false);
   const [str, setStr] = useState("Go");
@@ -53,6 +55,16 @@ export default function Home() {
       setStr("Go");
     }
   };
+
+  // hooks
+  useEffect(() => {
+    // 상세화면에서 메인화면으로 돌아온 거라면?
+    if (flag) {
+      setVisible(false);
+      setMainContainerShow(true);
+      setInButtonContainerHide(true);
+    }
+  }, [flag]);
 
   return (
     <>
@@ -84,6 +96,9 @@ export default function Home() {
                 id={info.id}
                 name={info.name}
                 imageUrl={info.imageUrl}
+                films={undefined}
+                sourceUrl={undefined}
+                mainYn={true}
               />
             ))}
           </CardListContainer>
