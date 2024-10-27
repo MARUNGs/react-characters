@@ -41,3 +41,9 @@ export const MainContainer = styled.div<{ $mainContainerShow: boolean }>`
     $mainContainerShow ? "visible" : "hidden"};
   transition: visibility 0s linear 0.5s; /* fadeOut 애니메이션 후에 visibility를 hidden으로 설정 */
 `;
+
+export const CardListContainer = styled.div.attrs({
+  className: `grid grid-cols-4 gap-4 m-20 overflow-y-auto overflow-y-scroll`,
+})`
+  height: 650px;
+`;
